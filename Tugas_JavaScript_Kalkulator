@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>nim_nama_percobaan10.html</title>
+    <style>
+      .calculator {
+        width: 260px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+        font-size: 24px;
+        margin: 50px auto;
+      }
+      .display {
+        border: 1px solid #333;
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: 36px;
+        text-align: right;
+        background-color: #333;
+        color: white;
+        height: 60px;
+        line-height: 60px;
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+      button {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        margin: 5px;
+        background-color: #e0e0e0;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button.operator {
+        background-color: #ccc;
+      }
+      button.equals {
+        background-color: #007bff;
+        color: white;
+        width: calc(100% - 10px);
+        height: 240px;
+      }
+      button.clear {
+        background-color: #dc3545;
+        color: white;
+      }
+      table {
+        width: 100%;
+        border-spacing: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <div class="display" id="display">0</div>
+      <table>
+        <tr>
+          <td><button class="operator" onclick="addToDisplay('+')">+</button></td>
+          <td><button class="operator" onclick="addToDisplay('-')">-</button></td>
+          <td><button class="operator" onclick="addToDisplay('*')">x</button></td>
+          <td><button class="operator" onclick="addToDisplay('/')">/</button></td>
+        </tr>
+        <tr>
+          <td><button onclick="addToDisplay('7')">7</button></td>
+          <td><button onclick="addToDisplay('8')">8</button></td>
+          <td><button onclick="addToDisplay('9')">9</button></td>
+          <td rowspan="4"><button class="equals" onclick="calculate()">=</button></td>
+        </tr>
+        <tr>
+          <td><button onclick="addToDisplay('4')">4</button></td>
+          <td><button onclick="addToDisplay('5')">5</button></td>
+          <td><button onclick="addToDisplay('6')">6</button></td>
+        </tr>
+        <tr>
+          <td><button onclick="addToDisplay('1')">1</button></td>
+          <td><button onclick="addToDisplay('2')">2</button></td>
+          <td><button onclick="addToDisplay('3')">3</button></td>
+        </tr>
+        <tr>
+          <td><button onclick="addToDisplay('0')">0</button></td>
+          <td><button onclick="addToDisplay('.')">.</button></td>
+          <td><button class="clear" onclick="clearDisplay()">AC</button></td>
+        </tr>
+      </table>
+    </div>
+    <script>
+      let displayValue = "0";
+
+      function addToDisplay(value) {
+        if (displayValue === "0") {
+          displayValue = value;
+        } else {
+          displayValue += value;
+        }
+        document.getElementById("display").innerText = displayValue;
+      }
+
+      function clearDisplay() {
+        displayValue = "0";
+        document.getElementById("display").innerText = displayValue;
+      }
+
+      function calculate() {
+        try {
+          displayValue = eval(displayValue).toString();
+          document.getElementById("display").innerText = displayValue;
+        } catch (error) {
+          alert("Invalid expression");
+        }
+      }
+    </script>
+  </body>
+</html>
